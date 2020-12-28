@@ -20,5 +20,7 @@ services:
     command: sh ./start.sh
     networks:
       - micro-default
+    ports:
+      - 3000:3000
 networks:
   micro-default:
