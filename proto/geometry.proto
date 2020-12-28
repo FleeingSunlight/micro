@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package geometry;
+
+service GeometryService {
+  rpc AreaOfCircle (AreaOfCircleReq) returns (AreaRes) {}
+  rpc AreaOfRectangle (AreaOfRectangleReq) returns (AreaRes) {}
+}
+
+message AreaOfCircleReq {
+  int32 radius = 1;
+}
+
+message AreaOfRectangleReq {
+  int32 width = 1;
+  int32 height = 2;
+}
+
+message AreaRes {
+  int32 area = 1;
+}
