@@ -8,6 +8,8 @@ services:
       - ./proto:/app/proto:ro
     working_dir: /app
     command: sh ./start.sh
+    networks:
+      - micro-default
   api-gateway:
     image: node:latest
     container_name: micro-api-gateway
@@ -15,3 +17,7 @@ services:
       - ./api-gateway:/app
       - ./proto:/app/proto:ro
     command: sh ./start.sh
+    networks:
+      - micro-default
+networks:
+  micro-default:
