@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package fibonacci;
+
+service FibonacciService {
+  rpc Fibonacci (FibonacciReq) returns (FibonacciRes) {}
+  rpc FibonacciFaster (FibonacciReq) returns (FibonacciRes) {}
+}
+
+message FibonacciReq {
+  int32 order = 1;
+}
+
+message FibonacciRes {
+  int32 number = 1;
+}
