@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package factorial;
+
+service FactorialService {
+  rpc Factorial (FactorialReq) returns (FactorialRes) {}
+}
+
+message FactorialReq {
+  int32 number = 1;
+}
+
+message FibonacciRes {
+  int32 result = 1;
+}
