@@ -1,0 +1,10 @@
+version: "3.5"
+services:
+  svc-geometry:
+    image: rust:latest
+    container_name: micro-svc-geometry
+    volumes:
+      - ./services/geometry:/app
+      - ./proto:/app/proto:ro
+    working_dir: /app
+    command: sh ./start.sh
