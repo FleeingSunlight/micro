@@ -8,3 +8,10 @@ services:
       - ./proto:/app/proto:ro
     working_dir: /app
     command: sh ./start.sh
+  api-gateway:
+    image: node:latest
+    container_name: micro-api-gateway
+    volumes:
+      - ./api-gateway:/app
+      - ./proto:/app/proto:ro
+    command: sh ./start.sh
