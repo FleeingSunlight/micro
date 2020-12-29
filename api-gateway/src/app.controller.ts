@@ -31,4 +31,9 @@ export class AppController {
   ): Promise<any> {
     return this.appService.fibonacciFaster(order);
   }
+
+  @Get('factorial/:number')
+  async factorial(@Param('number', ParseIntPipe) number: number): Promise<any> {
+    return this.appService.factorial(number);
+  }
 }

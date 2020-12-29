@@ -26,12 +26,26 @@ export class AppService implements OnModuleInit {
   private readonly _fibonacciService: ClientGrpc;
   private fibonacciService: any;
 
+  @Client({
+    transport: Transport.GRPC,
+    options: {
+      url: 'svc-factorial:50051',
+      package: 'factorial',
+      protoPath: join(__dirname, '../proto/factorial.proto'),
+    },
+  })
+  private readonly _factorialService: ClientGrpc;
+  private factorialService: any;
+
   onModuleInit() {
     this.geometryService = this._geometryService.getService<any>(
       'GeometryService',
     );
     this.fibonacciService = this._fibonacciService.getService<any>(
       'FibonacciService',
+    );
+    this.factorialService = this._factorialService.getService<any>(
+      'FactorialService',
     );
   }
 
@@ -49,5 +63,9 @@ export class AppService implements OnModuleInit {
 
   async fibonacciFaster(order: number): Promise<any> {
     return await this.fibonacciService.fibonacciFaster({ order });
+  }
+
+  async factorial(number: number): Promise<any> {
+    return await this.factorialService.factorial({ number });
   }
 }
