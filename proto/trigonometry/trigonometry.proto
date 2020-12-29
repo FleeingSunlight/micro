@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package trigonometry;
 
+option go_package = "proto/trigonometry";
+
 service TrigonometryService {
     rpc Sin (TrigonometryReq) returns (TrigonometryRes) {}
     rpc Cos (TrigonometryReq) returns (TrigonometryRes) {}
@@ -9,10 +11,10 @@ service TrigonometryService {
   }
   
   message TrigonometryReq {
-    int32 argument = 1;
+    float argument = 1;
   }
   
   message TrigonometryRes {
-    int32 result = 1;
+    float result = 1;
   }
   
