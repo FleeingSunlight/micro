@@ -2,17 +2,27 @@ import asyncio
 import logging
 
 import grpc
+from google.rpc import code_pb2, status_pb2
 
 import factorial_pb2
 import factorial_pb2_grpc
 
 
-class FactorialService(factorial_pb2_grpc.FactorialServiceServicer):
-    def factorial(n):
-        return 1 if n <= 1 else n * factorial(n - 1)
-    
+class FactorialService(factorial_pb2_grpc.FactorialServiceServicer):    
+
+
+    def f(n):
+        if n < 0:
+            return status_pb2.Status(
+                code=code_pb2.FAILED_PRECONDITION,
+                message='Number should not be negative.',
+                details=[]
+            )
+        return 1 if n <= 1 else n * f(n - 1)
+
     async def Factorial(self, request: factorial_pb2.FactorialReq, context: grpc.aio.ServicerContext) -> factorial_pb2.FactorialRes:
-        return factorial_pb2.FactorialRes(result=factorial(request.number))
+        result = self.f(n=request.number)
+        return factorial_pb2.FactorialRes(result=result)
 
 async def serve() -> None:
     server = grpc.aio.server()
