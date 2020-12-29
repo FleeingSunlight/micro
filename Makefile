@@ -1,3 +1,3 @@
 gitignore:
 	rm -rf ./services/.gitignore
-	sh ./scripts/gitignore.sh
+	sh ./scripts/generate-gitignore.sh
