@@ -20,6 +20,15 @@ services:
     command: sh ./start.sh
     networks:
       - micro-default
+  svc-factorial:
+    image: python:latest
+    container_name: micro-svc-factorial
+    volumes:
+      - ./services/factorial:/app
+    working_dir: /app
+    command: sh ./start.sh
+    networks:
+      - micro-default
   api-gateway:
     image: node:latest
     container_name: micro-api-gateway
