@@ -29,6 +29,15 @@ services:
     command: sh ./start.sh
     networks:
       - micro-default
+  svc-trigonometry:
+    image: golang:latest
+    container_name: micro-svc-trigonometry
+    volumes:
+      - ./services/trigonometry:/app
+    working_dir: /app
+    command: sh ./start.sh
+    networks:
+      - micro-default
   api-gateway:
     image: node:latest
     container_name: micro-api-gateway
