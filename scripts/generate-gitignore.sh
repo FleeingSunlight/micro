@@ -1,1 +1,1 @@
-for f in ./services/gitignore/*.gitignore; do (cat "${f}"; echo) >> ./services/.gitignore; done
+for f in ./gitignore/*.gitignore; do (cat "${f}"; echo) >> ./services/.gitignore; done
