@@ -1,5 +1,8 @@
 package co.fleeingsunlight.micro;
 
+import co.fleeingsunlight.micro.FibonacciServiceGrpc;
+import co.fleeingsunlight.micro.FibonacciReq;
+import co.fleeingsunlight.micro.FibonacciRes;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
