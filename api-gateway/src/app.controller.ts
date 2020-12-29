@@ -36,4 +36,25 @@ export class AppController {
   async factorial(@Param('number', ParseIntPipe) number: number): Promise<any> {
     return this.appService.factorial(number);
   }
+
+  @Get('trigonometry/sin/:argument')
+  async trigonometrySin(
+    @Param('argument', ParseIntPipe) argument: number,
+  ): Promise<any> {
+    return this.appService.trigonometrySin(argument);
+  }
+
+  @Get('trigonometry/cos/:argument')
+  async trigonometryCos(
+    @Param('argument', ParseIntPipe) argument: number,
+  ): Promise<any> {
+    return this.appService.trigonometryCos(argument);
+  }
+
+  @Get('trigonometry/tan/:argument')
+  async trigonometryTan(
+    @Param('argument', ParseIntPipe) argument: number,
+  ): Promise<any> {
+    return this.appService.trigonometryTan(argument);
+  }
 }

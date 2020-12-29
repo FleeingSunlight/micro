@@ -37,6 +37,17 @@ export class AppService implements OnModuleInit {
   private readonly _factorialService: ClientGrpc;
   private factorialService: any;
 
+  @Client({
+    transport: Transport.GRPC,
+    options: {
+      url: 'svc-trigonometry:50051',
+      package: 'trigonometry',
+      protoPath: join(__dirname, '../proto/trigonometry/trigonometry.proto'),
+    },
+  })
+  private readonly _trigonometryService: ClientGrpc;
+  private trigonometryService: any;
+
   onModuleInit() {
     this.geometryService = this._geometryService.getService<any>(
       'GeometryService',
@@ -46,6 +57,9 @@ export class AppService implements OnModuleInit {
     );
     this.factorialService = this._factorialService.getService<any>(
       'FactorialService',
+    );
+    this.trigonometryService = this._trigonometryService.getService<any>(
+      'TrigonometryService',
     );
   }
 
@@ -67,5 +81,17 @@ export class AppService implements OnModuleInit {
 
   async factorial(number: number): Promise<any> {
     return await this.factorialService.factorial({ number });
+  }
+
+  async trigonometrySin(argument: number): Promise<any> {
+    return await this.trigonometryService.sin({ argument });
+  }
+
+  async trigonometryCos(argument: number): Promise<any> {
+    return await this.trigonometryService.cos({ argument });
+  }
+
+  async trigonometryTan(argument: number): Promise<any> {
+    return await this.trigonometryService.tan({ argument });
   }
 }
