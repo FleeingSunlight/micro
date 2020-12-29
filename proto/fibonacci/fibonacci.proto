@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package fibonacci;
 
+option java_package = "co.fleeingsunlight.micro";
+option java_multiple_files = true;
+
 service FibonacciService {
   rpc Fibonacci (FibonacciReq) returns (FibonacciRes) {}
   rpc FibonacciFaster (FibonacciReq) returns (FibonacciRes) {}
