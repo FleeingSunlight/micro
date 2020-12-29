@@ -19,4 +19,16 @@ export class AppController {
   ): Promise<any> {
     return this.appService.getAreaOfRectangle(width, height);
   }
+
+  @Get('fibonacci/:order')
+  async fibonacci(@Param('order', ParseIntPipe) order: number): Promise<any> {
+    return this.appService.fibonacci(order);
+  }
+
+  @Get('fibonacci/faster/:order')
+  async fibonacciFaster(
+    @Param('order', ParseIntPipe) order: number,
+  ): Promise<any> {
+    return this.appService.fibonacciFaster(order);
+  }
 }
