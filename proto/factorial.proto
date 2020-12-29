@@ -10,6 +10,6 @@ message FactorialReq {
   int32 number = 1;
 }
 
-message FibonacciRes {
+message FactorialRes {
   int32 result = 1;
 }
