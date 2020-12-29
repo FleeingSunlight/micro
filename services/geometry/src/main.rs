@@ -19,7 +19,7 @@ impl geometry::geometry_service_server::GeometryService for GeometryServiceServe
         let radius = request.into_inner().radius;
 
         if radius < 0.0 {
-            unimplemented!()
+            return Status::failed_precondition("Radius should not be negative.");
         }
 
         let area = geometry::AreaRes {
@@ -31,9 +31,25 @@ impl geometry::geometry_service_server::GeometryService for GeometryServiceServe
 
     async fn area_of_rectangle(
         &self,
-        _request: Request<AreaOfRectangleReq>,
+        request: Request<AreaOfRectangleReq>,
     ) -> Result<Response<AreaRes>, Status> {
-        unimplemented!()
+        let req = request.into_inner();
+        let width = req.width;
+        let height = req.height;
+        
+        if width < 0.0 {
+            return Status::failed_precondition("Width should not be negative.");
+        }
+
+        if height < 0.0 {
+            return Status::failed_precondition("Height should not be negative.");
+        }
+
+        let area = geometry::AreaRes {
+            area: width * height,
+        };
+
+        Ok(Response::new(area))
     }
 }
 
