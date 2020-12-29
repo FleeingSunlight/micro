@@ -10,6 +10,16 @@ services:
     command: sh ./start.sh
     networks:
       - micro-default
+  svc-fibonacci:
+    image: maven:latest
+    container_name: micro-svc-fibonacci
+    volumes:
+      - ./services/fibonacci:/app
+      - ./proto/fibonacci:/app/src/main/proto:ro
+    working_dir: /app
+    command: sh ./start.sh
+    networks:
+      - micro-default
   api-gateway:
     image: node:latest
     container_name: micro-api-gateway
