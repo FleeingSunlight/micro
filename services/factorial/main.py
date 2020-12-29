@@ -9,19 +9,19 @@ import factorial_pb2_grpc
 
 
 class FactorialService(factorial_pb2_grpc.FactorialServiceServicer):    
-
-
-    def f(n):
+    def f(self, n):
         if n < 0:
             return status_pb2.Status(
                 code=code_pb2.FAILED_PRECONDITION,
                 message='Number should not be negative.',
                 details=[]
             )
-        return 1 if n <= 1 else n * f(n - 1)
+        return 1 if n <= 1 else n * self.f(n - 1)
 
     async def Factorial(self, request: factorial_pb2.FactorialReq, context: grpc.aio.ServicerContext) -> factorial_pb2.FactorialRes:
-        result = self.f(n=request.number)
+        n = int(request.number)
+        logging.info(n)
+        result = self.f(n=n)
         return factorial_pb2.FactorialRes(result=result)
 
 async def serve() -> None:
