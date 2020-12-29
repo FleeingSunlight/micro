@@ -1,7 +1,7 @@
+use std::f64::consts::PI;
 use tonic::{transport::Server, Request, Response, Status};
-use std::f64::consts::{PI};
 
-use geometry::{AreaRes, AreaOfCircleReq, AreaOfRectangleReq};
+use geometry::{AreaOfCircleReq, AreaOfRectangleReq, AreaRes};
 
 pub mod geometry {
     tonic::include_proto!("geometry");
@@ -23,7 +23,7 @@ impl geometry::geometry_service_server::GeometryService for GeometryServiceServe
         }
 
         let area = geometry::AreaRes {
-            area: radius  * (PI as f32),
+            area: radius * (PI as f32),
         };
 
         Ok(Response::new(area))
