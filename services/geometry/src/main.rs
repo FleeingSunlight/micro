@@ -19,7 +19,7 @@ impl geometry::geometry_service_server::GeometryService for GeometryServiceServe
         let radius = request.into_inner().radius;
 
         if radius < 0.0 {
-            return Status::failed_precondition("Radius should not be negative.");
+            return Err(Status::failed_precondition("Radius should not be negative."));
         }
 
         let area = geometry::AreaRes {
@@ -38,11 +38,11 @@ impl geometry::geometry_service_server::GeometryService for GeometryServiceServe
         let height = req.height;
         
         if width < 0.0 {
-            return Status::failed_precondition("Width should not be negative.");
+            return Err(Status::failed_precondition("Width should not be negative."));
         }
 
         if height < 0.0 {
-            return Status::failed_precondition("Height should not be negative.");
+            return Err(Status::failed_precondition("Height should not be negative."));
         }
 
         let area = geometry::AreaRes {
